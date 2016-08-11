@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="3dp"
+    android:orientation="vertical">
+
+    <include layout="@layout/baseactivity" />
+
+    <TextView
+        android:id="@+id/callPhone"
+        android:layout_width="match_parent"
+        android:layout_height="69dp"
+        android:layout_marginTop="19dp"
+        android:background="@android:color/darker_gray"
+        android:clickable="true"
+        android:focusable="true"
+        android:gravity="center"
+        android:text="拨打电话"
+        android:textSize="17sp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="9dp"
+        android:background="#cccccc" />
+
+    <TextView
+        android:id="@+id/sendMsg"
+        android:layout_width="match_parent"
+        android:layout_height="69dp"
+        android:background="@android:color/darker_gray"
+        android:clickable="true"
+        android:focusable="true"
+        android:gravity="center"
+        android:text="发送短信"
+        android:textSize="17sp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="9dp"
+        android:background="#cccccc" />
+
+    <TextView
+        android:id="@+id/copy_number"
+        android:layout_width="match_parent"
+        android:layout_height="69dp"
+        android:background="@android:color/darker_gray"
+        android:clickable="true"
+        android:focusable="true"
+        android:gravity="center"
+        android:text="复制号码"
+        android:textSize="17sp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="9dp"
+        android:background="#cccccc" />
+
+    <TextView
+        android:id="@+id/del_call_logs"
+        android:layout_width="match_parent"
+        android:layout_height="69dp"
+        android:background="@android:color/darker_gray"
+        android:clickable="true"
+        android:focusable="true"
+        android:gravity="center"
+        android:text="删除记录"
+        android:textSize="17sp" />
+
+
+</LinearLayout>

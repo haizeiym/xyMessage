@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/nowNum"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="#D6D7D7"
+        android:gravity="center_horizontal|center_vertical"
+        android:text="当前号码为：空"
+        android:textSize="19sp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/holo_blue_light" />
+
+    <TextView
+        android:id="@+id/delNum"
+        android:layout_width="match_parent"
+        android:layout_height="59dp"
+        android:layout_marginBottom="1dp"
+        android:background="#D6D7D7"
+        android:clickable="true"
+        android:focusable="true"
+        android:gravity="center"
+        android:text="删除"
+        android:textSize="17sp" />
+
+    <GridView
+        android:id="@+id/dialog_gridView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:numColumns="3" />
+
+
+</LinearLayout>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/baseactivity" />
+
+    <EditText
+        android:id="@+id/name"
+        android:layout_width="match_parent"
+        android:layout_height="69dp"
+        android:layout_margin="3dp"
+        android:hint="姓名" />
+
+    <EditText
+        android:id="@+id/num"
+        android:layout_width="match_parent"
+        android:layout_height="69dp"
+        android:layout_margin="3dp"
+        android:hint="号码"
+        android:inputType="number" />
+
+    <TextView
+        android:id="@+id/contactContent"
+        android:layout_width="match_parent"
+        android:layout_height="139dp"
+        android:gravity="center"
+        android:text="联系人内容为空" />
+
+    <Button
+        android:id="@+id/sureSave"
+        android:layout_width="match_parent"
+        android:layout_height="69dp"
+        android:text="确定"
+        android:textSize="17sp" />
+
+
+</LinearLayout>

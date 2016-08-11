@@ -1,0 +1,88 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <FrameLayout
+        android:id="@+id/page"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/cut_off_rule">
+
+    </FrameLayout>
+
+    <View
+        android:id="@+id/cut_off_rule"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_above="@+id/cloun"
+        android:background="@android:color/darker_gray" />
+
+    <LinearLayout
+        android:id="@+id/cloun"
+        android:layout_width="match_parent"
+        android:layout_height="59dp"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="3dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/dial"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="#D6D7D7"
+            android:clickable="true"
+            android:gravity="center"
+            android:text="拨号"
+            android:textSize="17sp" />
+
+        <View
+            android:layout_width="3dp"
+            android:layout_height="match_parent" />
+
+        <TextView
+            android:id="@+id/record"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="#D6D7D7"
+            android:clickable="true"
+            android:gravity="center"
+            android:text="通话记录"
+            android:textSize="17sp" />
+
+        <View
+            android:layout_width="3dp"
+            android:layout_height="match_parent" />
+
+        <TextView
+            android:id="@+id/msg"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="#D6D7D7"
+            android:clickable="true"
+            android:gravity="center"
+            android:text="信息"
+            android:textSize="17sp" />
+
+        <View
+            android:layout_width="3dp"
+            android:layout_height="match_parent" />
+
+        <TextView
+            android:id="@+id/contact"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="#D6D7D7"
+            android:clickable="true"
+            android:gravity="center"
+            android:text="联系人"
+            android:textSize="17sp" />
+
+    </LinearLayout>
+
+</RelativeLayout>

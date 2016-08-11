@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/baseactivity" />
+
+    <TextView
+        android:id="@+id/answer_model_man"
+        android:layout_width="match_parent"
+        android:layout_height="99dp"
+        android:layout_marginBottom="9dp"
+        android:layout_marginLeft="3dp"
+        android:layout_marginRight="3dp"
+        android:layout_marginTop="19dp"
+        android:background="#D6D7D7"
+        android:clickable="true"
+        android:gravity="center_horizontal|center_vertical"
+        android:text="接听模式设置"
+        android:textSize="17sp"
+        android:visibility="visible" />
+
+    <TextView
+        android:id="@+id/ping_model"
+        android:layout_width="match_parent"
+        android:layout_height="99dp"
+        android:layout_marginBottom="9dp"
+        android:layout_marginLeft="3dp"
+        android:layout_marginRight="3dp"
+        android:layout_marginTop="19dp"
+        android:background="#D6D7D7"
+        android:clickable="true"
+        android:gravity="center_horizontal|center_vertical"
+        android:text="上屏设置"
+        android:textSize="17sp"
+        android:visibility="visible" />
+
+    <TextView
+        android:id="@+id/exit_system"
+        android:layout_width="match_parent"
+        android:layout_height="99dp"
+        android:layout_marginBottom="9dp"
+        android:layout_marginLeft="3dp"
+        android:layout_marginRight="3dp"
+        android:layout_marginTop="19dp"
+        android:background="#D6D7D7"
+        android:clickable="true"
+        android:gravity="center_horizontal|center_vertical"
+        android:text="退出"
+        android:textSize="17sp"
+        android:visibility="visible" />
+</LinearLayout>

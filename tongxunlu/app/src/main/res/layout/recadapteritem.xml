@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:weightSum="9">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="9dp"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/nameornum"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="姓名或者电话" />
+
+
+        <TextView
+            android:id="@+id/local"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="归属地" />
+
+        <TextView
+            android:id="@+id/howTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="来电时间" />
+
+        <TextView
+            android:id="@+id/callTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="通话时长" />
+
+    </LinearLayout>
+
+    <CheckBox
+        android:id="@+id/isCheck"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_vertical"
+        android:layout_marginLeft="7dp"
+        android:layout_weight="8"
+        android:visibility="gone" />
+</LinearLayout>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/baseactivity" />
+
+    <TextView
+        android:id="@+id/simCard_1"
+        android:layout_width="match_parent"
+        android:layout_height="69dp"
+        android:layout_margin="3dp"
+        android:background="#D6D7D7"
+        android:clickable="true"
+        android:gravity="center_horizontal|center_vertical"
+        android:text="卡1拨打"
+        android:textSize="17sp" />
+
+    <TextView
+        android:id="@+id/simCard_2"
+        android:layout_width="match_parent"
+        android:layout_height="69dp"
+        android:layout_margin="3dp"
+        android:background="#D6D7D7"
+        android:clickable="true"
+        android:gravity="center_horizontal|center_vertical"
+        android:text="卡2拨打"
+        android:textSize="17sp" />
+
+</LinearLayout>

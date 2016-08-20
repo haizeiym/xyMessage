@@ -46,7 +46,7 @@ public class PhoneListener extends BroadcastReceiver {
         Intent callShowView = new Intent(context, CallShowView.class);
         switch (state) {
             case TelephonyManager.CALL_STATE_RINGING:
-                //来电
+                //来电监听
                 CallShowView.context = context;
                 CallShowView.phoneNumBerStr = phoneNumber;
                 CallShowView.intent = intent2;

@@ -2,14 +2,17 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="3dp"
     android:orientation="vertical">
 
     <TextView
         android:id="@+id/dialed_calls"
         android:layout_width="match_parent"
-        android:layout_height="69dp"
-        android:layout_marginTop="39dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="9dp"
+        android:layout_marginLeft="17dp"
+        android:layout_marginRight="17dp"
+        android:layout_marginTop="19dp"
+        android:layout_weight="1"
         android:background="#D6D7D7"
         android:clickable="true"
         android:focusable="true"
@@ -17,14 +20,14 @@
         android:text="已拨电话"
         android:textSize="17sp" />
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="9dp" />
-
     <TextView
         android:id="@+id/received_calls"
         android:layout_width="match_parent"
-        android:layout_height="69dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="9dp"
+        android:layout_marginLeft="17dp"
+        android:layout_marginRight="17dp"
+        android:layout_weight="1"
         android:background="#D6D7D7"
         android:clickable="true"
         android:focusable="true"
@@ -32,19 +35,24 @@
         android:text="已接电话"
         android:textSize="17sp" />
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="9dp" />
-
     <TextView
         android:id="@+id/missed_calls"
         android:layout_width="match_parent"
-        android:layout_height="69dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="9dp"
+        android:layout_marginLeft="17dp"
+        android:layout_marginRight="17dp"
+        android:layout_weight="1"
         android:background="#D6D7D7"
         android:clickable="true"
         android:focusable="true"
         android:gravity="center"
         android:text="未接电话"
         android:textSize="17sp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
 
 </LinearLayout>

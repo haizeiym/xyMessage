@@ -36,7 +36,7 @@ public class ContactFragment extends Fragment implements View.OnClickListener, A
     ListView autoListView;
     ContactAdapter adapter;
     LinearLayout find_ll, find_in;
-    List<ContactModel> contactModels = new ArrayList<>();
+    List<ContactModel> contactModels;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -69,7 +69,8 @@ public class ContactFragment extends Fragment implements View.OnClickListener, A
     @Override
     public void onResume() {
         super.onResume();
-        adapter.refresh(Utils.getPeopleInPhone(getActivity()));
+        contactModels = Utils.getPeopleInPhone(getActivity());
+        adapter.refresh(contactModels);
     }
 
     @Override

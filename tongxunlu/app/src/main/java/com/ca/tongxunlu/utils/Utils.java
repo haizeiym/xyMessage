@@ -84,6 +84,10 @@ public class Utils {
         this.utilsInterface = utilsInterface;
     }
 
+    //去电窗
+    public static WindowManager mWindowManager;
+    public static LinearLayout mFloatLayout;
+
     //toast工具
     public static void toast(Context context, String content) {
         final Toast toast = Toast.makeText(context, content, Toast.LENGTH_SHORT);
@@ -312,9 +316,10 @@ public class Utils {
     //获取手机联系人号码
     public static ArrayList<ContactModel> getPeopleInPhone(Context context) {
         Set<String> have = new HashSet<>();
-        ArrayList<ContactModel> list = new ArrayList<>();
+        ArrayList<ContactModel> list = null;
         Cursor cursor = null;
         try {
+            list = new ArrayList<>();
             cursor = context.getContentResolver().query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI, null, null, null, null);     // 获取手机联系人
             while (cursor != null && cursor.moveToNext()) {
                 int indexPeopleName = cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME);    // people name
@@ -351,12 +356,16 @@ public class Utils {
     //系统数据库删除短信的类型
     public static String delType(String type) {
         String t = "";
-        if (type.equals(ReadMsg.SMS_URI_INBOX)) {
-            t = ReadMsg.SMS_URI_INBOXT;
-        } else if (type.equals(ReadMsg.SMS_URI_SEND)) {
-            t = ReadMsg.SMS_URI_SENDT;
-        } else if (type.equals(ReadMsg.SMS_URI_DRAFT)) {
-            t = ReadMsg.SMS_URI_DRAFTT;
+        switch (type) {
+            case ReadMsg.SMS_URI_INBOX:
+                t = ReadMsg.SMS_URI_INBOXT;
+                break;
+            case ReadMsg.SMS_URI_SEND:
+                t = ReadMsg.SMS_URI_SENDT;
+                break;
+            case ReadMsg.SMS_URI_DRAFT:
+                t = ReadMsg.SMS_URI_DRAFTT;
+                break;
         }
         return t;
     }
@@ -417,7 +426,7 @@ public class Utils {
     }
 
     //去电弹窗
-    public static void outingWindow(final Context context, Intent intent) {
+    public static void outingWindow(final Context context) {
         if (context == null) {
             return;
         }
@@ -425,7 +434,7 @@ public class Utils {
         //创建浮动窗口设置布局参数的对象
         WindowManager.LayoutParams wmParams = new WindowManager.LayoutParams();
         //获取WindowManagerImpl.CompatModeWrapper
-        final WindowManager mWindowManager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
+        mWindowManager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
         //设置window type[优先级]
         wmParams.type = WindowManager.LayoutParams.TYPE_SYSTEM_ERROR;//窗口的type类型决定了它的优先级，优先级越高显示越在顶层
         //设置浮动窗口不可聚焦（实现操作除浮动窗口外的其他可见窗口的操作）
@@ -438,7 +447,7 @@ public class Utils {
         //设置悬浮窗口长宽数据
         wmParams.width = WindowManager.LayoutParams.MATCH_PARENT;
         wmParams.height = WindowManager.LayoutParams.MATCH_PARENT;
-        final LinearLayout mFloatLayout = (LinearLayout) LayoutInflater.from(context).inflate(R.layout.outing_window, null);
+        mFloatLayout = (LinearLayout) LayoutInflater.from(context).inflate(R.layout.outing_window, null);
         TextView endCall = (TextView) mFloatLayout.findViewById(R.id.outing_call_end);
         TextView hands_free = (TextView) mFloatLayout.findViewById(R.id.outing_call_hands_free);
         mWindowManager.addView(mFloatLayout, wmParams);
@@ -446,7 +455,7 @@ public class Utils {
             @Override
             public void onClick(View v) {
                 Utils.endCall(context);
-                mWindowManager.removeView(mFloatLayout);
+                removeDia();
                 DialFragment.numSum = "";
                 MainActivity.instance.handler.sendEmptyMessage(XYConstant.REFRESH_CALL_LOGS);
             }
@@ -469,6 +478,13 @@ public class Utils {
         });
     }
 
+    //去除去电弹窗
+    public static void removeDia() {
+        if (mWindowManager != null && mFloatLayout != null) {
+            mWindowManager.removeView(mFloatLayout);
+        }
+    }
+
     //获取短信内容
     public static void systemMsg(Context context) {
         //清空数据
@@ -485,6 +501,7 @@ public class Utils {
                 int type = cur.getColumnIndex("type");
                 String nowTime = "";
                 String content = "";
+                String number = "";
                 do {
                     String strAddress = cur.getString(index_Address);
                     String strbody = cur.getString(index_Body);
@@ -493,7 +510,7 @@ public class Utils {
                     SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
                     Date d = new Date(longDate);
                     String strDate = dateFormat.format(d);
-                    if (nowTime.equals(strDate)) {
+                    if (nowTime.equals(strDate) && number.equals(strAddress)) {
                         content += strbody;
                     } else {
                         if (content.isEmpty()) {
@@ -508,6 +525,7 @@ public class Utils {
                         content = "";
                     }
                     nowTime = strDate;
+                    number = strAddress;
                 } while (cur.moveToNext());
             }
         } catch (Exception ex) {

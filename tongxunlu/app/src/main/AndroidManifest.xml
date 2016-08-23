@@ -117,7 +117,7 @@
             android:value="fcf5c35971a5d67eaf00bdf870225739" />
         <!--4.4以上的系统加-->
         <receiver
-            android:name=".f_f_msg.SmsReceiver"
+            android:name=".msgbase.SmsReceiver"
             android:permission="android.permission.BROADCAST_SMS">
             <intent-filter>
                 <action android:name="android.provider.Telephony.SMS_DELIVER" />
@@ -126,7 +126,7 @@
 
         <!-- BroadcastReceiver that listens for incoming MMS messages -->
         <receiver
-            android:name=".f_f_msg.MmsReceiver"
+            android:name=".msgbase.MmsReceiver"
             android:permission="android.permission.BROADCAST_WAP_PUSH">
             <intent-filter>
                 <action android:name="android.provider.Telephony.WAP_PUSH_DELIVER" />
@@ -135,7 +135,7 @@
         </receiver>
 
         <!-- Activity that allows the user to send new SMS/MMS messages -->
-        <activity android:name=".f_f_msg.ComposeSmsUI">
+        <activity android:name=".msgbase.ComposeSmsUI">
             <intent-filter>
                 <action android:name="android.intent.action.SEND" />
                 <action android:name="android.intent.action.SENDTO" />
@@ -152,7 +152,7 @@
 
         <!-- Service that delivers messages from the phone "quick response" -->
         <service
-            android:name=".f_f_msg.HeadlessSmsSendService"
+            android:name=".msgbase.HeadlessSmsSendService"
             android:exported="true"
             android:permission="android.permission.SEND_RESPOND_VIA_MESSAGE">
             <intent-filter>

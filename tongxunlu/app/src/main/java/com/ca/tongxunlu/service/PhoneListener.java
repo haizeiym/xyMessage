@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.SystemClock;
 import android.telephony.PhoneStateListener;
 import android.telephony.TelephonyManager;
+import android.util.Log;
 
 import com.ca.tongxunlu.contact.XYConstant;
 import com.ca.tongxunlu.ui.AcceptCallUI;
@@ -33,7 +34,7 @@ public class PhoneListener extends BroadcastReceiver {
         if (action.equals(Intent.ACTION_NEW_OUTGOING_CALL)) {
             //拨打电话
             SystemClock.sleep(XYConstant.WAITING_WINDOW);
-            Utils.outingWindow(context, intent);
+            Utils.outingWindow(context);
         } else {
             //接听电话
             comingCall(context, telephony, intent);
@@ -61,6 +62,7 @@ public class PhoneListener extends BroadcastReceiver {
                 if (CallShowView.context != null) {
                     CallShowView.context.stopService(callShowView);
                 }
+                Utils.removeDia();
                 break;
             case TelephonyManager.CALL_STATE_OFFHOOK:
                 //通话中不做任何操作

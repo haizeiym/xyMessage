@@ -1,4 +1,4 @@
-package com.ca.tongxunlu.f_f_msg;
+package com.ca.tongxunlu.msgbase;
 
 import android.app.Service;
 import android.content.Intent;

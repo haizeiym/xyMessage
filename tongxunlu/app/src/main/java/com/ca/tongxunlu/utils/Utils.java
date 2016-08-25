@@ -482,6 +482,8 @@ public class Utils {
     public static void removeDia() {
         if (mWindowManager != null && mFloatLayout != null) {
             mWindowManager.removeView(mFloatLayout);
+            mWindowManager = null;
+            mFloatLayout = null;
         }
     }
 

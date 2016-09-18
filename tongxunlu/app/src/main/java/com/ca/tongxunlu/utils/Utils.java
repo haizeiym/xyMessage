@@ -501,9 +501,9 @@ public class Utils {
                 int index_Body = cur.getColumnIndex("body");
                 int index_Date = cur.getColumnIndex("date");
                 int type = cur.getColumnIndex("type");
-                String nowTime = "";
+                /*String nowTime = "";
                 String content = "";
-                String number = "";
+                String number = "";*/
                 do {
                     String strAddress = cur.getString(index_Address);
                     String strbody = cur.getString(index_Body);
@@ -511,8 +511,15 @@ public class Utils {
                     long longDate = cur.getLong(index_Date);
                     SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
                     Date d = new Date(longDate);
+                    /***/
                     String strDate = dateFormat.format(d);
-                    if (nowTime.equals(strDate) && number.equals(strAddress)) {
+                    CallLogMsg callLogMsg = new CallLogMsg();
+                    callLogMsg.name = strAddress;
+                    callLogMsg.howTime = strDate;
+                    callLogMsg.type = intType + "";
+                    callLogMsg.msgcontent = strbody;
+                    msgListAll.add(callLogMsg);
+                    /*if (nowTime.equals(strDate) && number.equals(strAddress)) {
                         content += strbody;
                     } else {
                         if (content.isEmpty()) {
@@ -527,7 +534,7 @@ public class Utils {
                         content = "";
                     }
                     nowTime = strDate;
-                    number = strAddress;
+                    number = strAddress;*/
                 } while (cur.moveToNext());
             }
         } catch (Exception ex) {

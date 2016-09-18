@@ -130,7 +130,6 @@ public class SendMsgUI extends BaseActivity {
                 }
             }
         });
-
     }
 
     @Override

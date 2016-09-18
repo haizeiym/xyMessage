@@ -9,7 +9,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.telephony.SmsMessage;
 
-import com.ca.tongxunlu.MainActivity;
 import com.ca.tongxunlu.contact.XYConstant;
 import com.ca.tongxunlu.ui.MsgUI;
 import com.ca.tongxunlu.utils.Utils;
@@ -36,7 +35,7 @@ public class SMSComeReceiver extends BroadcastReceiver {
                         }
                         playRingTone(context, RingtoneManager.TYPE_NOTIFICATION);
                         //有短信时发消息通知更新
-                        MainActivity.instance.handler.sendEmptyMessage(XYConstant.NEW_MSG);
+                        /*MainActivity.instance.handler.sendEmptyMessage(XYConstant.NEW_MSG);*/
                         MsgUI.instance.handler.sendEmptyMessage(XYConstant.NEW_MSG);
                     } catch (Exception e) {
                         e.printStackTrace();

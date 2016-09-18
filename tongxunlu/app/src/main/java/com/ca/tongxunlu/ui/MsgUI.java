@@ -34,7 +34,6 @@ import java.util.List;
  * @更新描述: TODO
  */
 public class MsgUI extends BaseActivity implements AdapterView.OnItemClickListener {
-    private ListView autoListView;
     private String type;
     MsgAdapter adapter;
     List<CallLogMsg> callLogMsgs = new ArrayList<>();
@@ -65,7 +64,7 @@ public class MsgUI extends BaseActivity implements AdapterView.OnItemClickListen
     private void init() {
         instance = this;
         type = getIntent().getStringExtra("msgtype");
-        autoListView = (ListView) findViewById(R.id.msgContent);
+        ListView autoListView = (ListView) findViewById(R.id.msgContent);
         View headView = View.inflate(instance, R.layout.del_head_view, null);
         delAllMsg = (TextView) headView.findViewById(R.id.delAllMsg);
         delAllMsg.setOnClickListener(this);

@@ -251,17 +251,17 @@ public class DialFragment extends Fragment {
     }
 
     //没有读屏软件测试用针对不同分辨率，相对于1080
-//    private void test() {
-//        gridView.setOnTouchListener(new View.OnTouchListener() {
-//            @Override
-//            public boolean onTouch(View v, MotionEvent event) {
-//                if (event.getAction() == MotionEvent.ACTION_UP) {
-//                    double upX = (double) event.getX();
-//                    double upY = (double) event.getY();
-//                    nowNum(whatNum(upX, upY));
-//                }
-//                return false;
-//            }
-//        });
-//    }
+    /*private void test() {
+        gridView.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_UP) {
+                    double upX = (double) event.getX();
+                    double upY = (double) event.getY();
+                    nowNum(whatNum(upX, upY));
+                }
+                return false;
+            }
+        });
+    }*/
 }

@@ -89,12 +89,9 @@ public class MeauUI extends BaseActivity {
                 finish();
                 break;
             case R.id.ctrl_content:
-                if (!TextUtils.isEmpty(content)) {
-                    Utils.copy(content);
-                    Utils.toast(MeauUI.this, "复制内容完成");
-                } else {
-                    Utils.toast(MeauUI.this, "内容为空");
-                }
+                intent.setClass(MeauUI.this, CopyContentUI.class);
+                intent.putExtra("content", content);
+                startActivity(intent);
                 break;
             case R.id.ctrl_v:
                 if (Utils.isCtrl_v()) {

@@ -87,12 +87,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                     dialFragment = new DialFragment();
                 }
                 ft.replace(R.id.page, dialFragment);
-                /*try {
-                    String s = NumLocation.getMobileAddress(instance, "18503020740");
-                    Log.e("sss", s);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }*/
                 break;
             case R.id.record:
                 if (recordFragment == null) {

@@ -48,6 +48,7 @@ import java.lang.reflect.Method;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -501,41 +502,37 @@ public class Utils {
                 int index_Body = cur.getColumnIndex("body");
                 int index_Date = cur.getColumnIndex("date");
                 int type = cur.getColumnIndex("type");
-                /*String nowTime = "";
-                String content = "";
-                String number = "";*/
+                Set<String> lastOneData = new HashSet<>();
+                String timeData = "";
                 do {
                     String strAddress = cur.getString(index_Address);
-                    String strbody = cur.getString(index_Body);
                     int intType = cur.getInt(type);
+                    String strbody = cur.getString(index_Body);
                     long longDate = cur.getLong(index_Date);
                     SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
                     Date d = new Date(longDate);
-                    /***/
                     String strDate = dateFormat.format(d);
-                    CallLogMsg callLogMsg = new CallLogMsg();
-                    callLogMsg.name = strAddress;
-                    callLogMsg.howTime = strDate;
-                    callLogMsg.type = intType + "";
-                    callLogMsg.msgcontent = strbody;
-                    msgListAll.add(callLogMsg);
-                    /*if (nowTime.equals(strDate) && number.equals(strAddress)) {
-                        content += strbody;
+                    if (timeData.equals(strDate)) {
+                        lastOneData.add(strDate);
                     } else {
-                        if (content.isEmpty()) {
-                            content = strbody;
-                        }
                         CallLogMsg callLogMsg = new CallLogMsg();
                         callLogMsg.name = strAddress;
                         callLogMsg.howTime = strDate;
                         callLogMsg.type = intType + "";
-                        callLogMsg.msgcontent = content;
+                        callLogMsg.msgcontent = strbody;
                         msgListAll.add(callLogMsg);
-                        content = "";
                     }
-                    nowTime = strDate;
-                    number = strAddress;*/
+                    timeData = strDate;
                 } while (cur.moveToNext());
+                if (lastOneData.size() > 0) {
+                    for (String hasTime : lastOneData) {
+                        for (CallLogMsg callLogMsg : msgListAll) {
+                            if (hasTime.equals(callLogMsg.howTime)) {
+                                msgListAll.remove(callLogMsg);
+                            }
+                        }
+                    }
+                }
             }
         } catch (Exception ex) {
             ex.printStackTrace();

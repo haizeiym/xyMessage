@@ -109,6 +109,9 @@
             android:name=".ui.SetingUI"
             android:launchMode="singleInstance" />
         <activity
+            android:name=".ui.CopyContentUI"
+            android:launchMode="singleInstance" />
+        <activity
             android:name=".ui.MeauUI"
             android:exported="true" />
 

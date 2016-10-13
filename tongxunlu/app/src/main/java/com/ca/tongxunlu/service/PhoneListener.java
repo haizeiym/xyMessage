@@ -31,14 +31,14 @@ public class PhoneListener extends BroadcastReceiver {
         String action = intent.getAction();
         TelephonyManager telephony = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
         telephony.listen(new ComeCall(), PhoneStateListener.LISTEN_CALL_STATE);
-        if (action.equals(Intent.ACTION_NEW_OUTGOING_CALL)) {
-            //拨打电话
+        /*if (action.equals(Intent.ACTION_NEW_OUTGOING_CALL)) {
+            //拨打电话（分机号未解决暂时不加，以后添加）
             SystemClock.sleep(XYConstant.WAITING_WINDOW);
             Utils.outingWindow(context);
-        } else {
-            //接听电话
-            comingCall(context, telephony, intent);
-        }
+        } else {*/
+        //接听电话
+        comingCall(context, telephony, intent);
+        /*}*/
     }
 
     private void comingCall(Context context, TelephonyManager telephony, Intent intent2) {

@@ -426,7 +426,7 @@ public class Utils {
         context.startActivity(intent);
     }
 
-    //去电弹窗
+    //去电弹窗（暂时不加，分机号未解决）
     public static void outingWindow(final Context context) {
         if (context == null) {
             return;
@@ -575,7 +575,7 @@ public class Utils {
                             callTypeStr = XYConstant.MISSED_CALLS;
                             break;
                     }
-                    //拨打时间
+                    //拨打时间 
                     SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                     Date callDate = new Date(cs.getLong(cs.getColumnIndex(CallLog.Calls.DATE)));
                     String callDateStr = sdf.format(callDate);

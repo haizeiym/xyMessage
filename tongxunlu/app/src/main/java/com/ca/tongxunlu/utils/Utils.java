@@ -12,6 +12,7 @@ import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.media.AudioManager;
@@ -48,7 +49,6 @@ import java.lang.reflect.Method;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -502,8 +502,8 @@ public class Utils {
                 int index_Body = cur.getColumnIndex("body");
                 int index_Date = cur.getColumnIndex("date");
                 int type = cur.getColumnIndex("type");
-                Set<String> lastOneData = new HashSet<>();
-                String timeData = "";
+                /*Set<String> lastOneData = new HashSet<>();
+                String timeData = "";*/
                 do {
                     String strAddress = cur.getString(index_Address);
                     int intType = cur.getInt(type);
@@ -512,19 +512,19 @@ public class Utils {
                     SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
                     Date d = new Date(longDate);
                     String strDate = dateFormat.format(d);
-                    if (timeData.equals(strDate)) {
+                    /*if (timeData.equals(strDate)) {
                         lastOneData.add(strDate);
                     } else {
-                        CallLogMsg callLogMsg = new CallLogMsg();
-                        callLogMsg.name = strAddress;
-                        callLogMsg.howTime = strDate;
-                        callLogMsg.type = intType + "";
-                        callLogMsg.msgcontent = strbody;
-                        msgListAll.add(callLogMsg);
-                    }
-                    timeData = strDate;
+                    }*/
+                    CallLogMsg callLogMsg = new CallLogMsg();
+                    callLogMsg.name = strAddress;
+                    callLogMsg.howTime = strDate;
+                    callLogMsg.type = intType + "";
+                    callLogMsg.msgcontent = strbody;
+                    msgListAll.add(callLogMsg);
+                   /* timeData = strDate;*/
                 } while (cur.moveToNext());
-                if (lastOneData.size() > 0) {
+                /*if (lastOneData.size() > 0) {
                     for (String hasTime : lastOneData) {
                         for (CallLogMsg callLogMsg : msgListAll) {
                             if (hasTime.equals(callLogMsg.howTime)) {
@@ -532,7 +532,7 @@ public class Utils {
                             }
                         }
                     }
-                }
+                }*/
             }
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -636,6 +636,27 @@ public class Utils {
                 break;
             }
         }
+    }
+    /*//版本名
+    public static String getVersionName(Context context) {
+        return getPackageInfo(context).versionName;
+    }
+    */
+    //版本号
+    public static String getVersionCode(Context context) {
+        return getPackageInfo(context).versionName;
+    }
+
+    private static PackageInfo getPackageInfo(Context context) {
+        PackageInfo pi = null;
+        try {
+            PackageManager pm = context.getPackageManager();
+            pi = pm.getPackageInfo(context.getPackageName(),
+                    PackageManager.GET_CONFIGURATIONS);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return pi;
     }
 
     public interface UtilsInterface {

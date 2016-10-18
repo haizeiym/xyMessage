@@ -14,8 +14,15 @@ import com.ca.tongxunlu.fragment.ContactFragment;
 import com.ca.tongxunlu.fragment.DialFragment;
 import com.ca.tongxunlu.fragment.MsgFragment;
 import com.ca.tongxunlu.fragment.RecordFragment;
+import com.ca.tongxunlu.i.ResponseHandler;
 import com.ca.tongxunlu.service.OpenPhoneStart;
+import com.ca.tongxunlu.utils.AsyncHttpUtils;
 import com.ca.tongxunlu.utils.Utils;
+
+import org.json.JSONObject;
+
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class MainActivity extends BaseActivity implements View.OnClickListener {
     TextView dial, record, msg, contact;
@@ -50,6 +57,33 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         Utils.systemMsg(instance);
         //初始化获取通话记录
         Utils.getCallHistoryList(instance);
+    }
+
+    //獲取版本號
+    private void getVersion() {
+        //请求数据
+        AsyncHttpUtils.get(AsyncHttpUtils.URL, new ResponseHandler() {
+            @Override
+            public void onSuccess(byte[] result) {
+                try {
+                    JSONObject jsonObject = new JSONObject(new String(result));
+                    JSONObject jsonObjectdesk = new JSONObject(jsonObject.get("communication").toString());
+                    if (!jsonObjectdesk.get("version").toString().equals(Utils.getVersionCode(instance))) {
+                        Utils.toast(instance, "版本已过期，请升级至最新版本");
+                        Timer timer = new Timer();
+                        TimerTask t = new TimerTask() {
+                            @Override
+                            public void run() {
+                                System.exit(0);
+                            }
+                        };
+                        timer.schedule(t, 3000);
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
     }
 
     @Override
@@ -119,6 +153,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         Utils.systemMsg(instance);
         //初始化获取通话记录
         Utils.getCallHistoryList(instance);
+        //獲取版本號
+        getVersion();
     }
 
     @Override

@@ -32,18 +32,16 @@ import java.text.DecimalFormat;
  * @更新描述: TODO
  */
 public class DialFragment extends Fragment {
-    TextView nowNum, delNum;
-    final String NOW_EMPYT_NUM = "当前号码为：空";
-    final String NOW_NOT_EMPTY_NUM = "当前号码为：";
-    final String TRUE_INPUT_NUM = "请正确输入号码";
-    final String EMPTY = "空";
-    final String NUM_IS_EMPTY = "号码已清空";
-    final String NOW_DELE = "已删除：";
+    private TextView nowNum, delNum;
+    private final String NOW_EMPYT_NUM = "当前号码为：空";
+    private final String NOW_NOT_EMPTY_NUM = "当前号码为：";
+    private final String EMPTY = "空";
+    private final String NUM_IS_EMPTY = "号码已清空";
     public static String numSum = "";
-    GridView gridView;
-    Dialog_itemAdapter adapter;
-    double pxy, allX, allY, x, y;
-    boolean isHover;
+    private GridView gridView;
+    private double x;
+    private double y;
+    private boolean isHover;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -60,13 +58,13 @@ public class DialFragment extends Fragment {
         nowNum = (TextView) view.findViewById(R.id.nowNum);
         delNum = (TextView) view.findViewById(R.id.delNum);
         gridView = (GridView) view.findViewById(R.id.dialog_gridView);
-        adapter = new Dialog_itemAdapter(getActivity());
+        Dialog_itemAdapter adapter = new Dialog_itemAdapter(getActivity());
         gridView.setAdapter(adapter);
         DisplayMetrics displayMetrics = getActivity().getResources().getDisplayMetrics();
         DecimalFormat df = new DecimalFormat("#.##");
-        pxy = Double.parseDouble(df.format((double) displayMetrics.widthPixels / 1080));
-        allX = pxy * 1079;
-        allY = pxy * 1099;
+        double pxy = Double.parseDouble(df.format((double) displayMetrics.widthPixels / 1080));
+        double allX = pxy * 1079;
+        double allY = pxy * 1099;
         x = allX / 3;
         y = allY / 5;
         isHover = isHover();
@@ -186,6 +184,7 @@ public class DialFragment extends Fragment {
     private void callPhone() {
         //判断号码是否正确
         if (TextUtils.isEmpty(numSum)) {
+            String TRUE_INPUT_NUM = "请正确输入号码";
             Utils.toast(getActivity(), TRUE_INPUT_NUM);
         } else {
             Utils.callPhone(getActivity(), numSum);
@@ -195,6 +194,7 @@ public class DialFragment extends Fragment {
     //删除
     private void deleNum() {
         if (!TextUtils.isEmpty(numSum)) {
+            String NOW_DELE = "已删除：";
             Utils.toast(getActivity(), NOW_DELE + numSum.substring(numSum.length() - 1, numSum.length()));
             numSum = numSum.substring(0, numSum.length() - 1);
             if (numSum.isEmpty()) {

@@ -25,14 +25,12 @@ import java.util.List;
  * @更新描述: 信息显示界面
  */
 public class MsgAdapter extends TBaseAdapter {
-    Context context;
-    List<CallLogMsg> callLogMsgs;
-    List<ContactModel> isIn;
+    private Context context;
+    private List<CallLogMsg> callLogMsgs;
 
-    public MsgAdapter(Context context, List<CallLogMsg> callLogMsgs, List<ContactModel> isIn) {
+    public MsgAdapter(Context context, List<CallLogMsg> callLogMsgs) {
         this.context = context;
         this.callLogMsgs = callLogMsgs;
-        this.isIn = isIn;
     }
 
     @Override
@@ -70,14 +68,13 @@ public class MsgAdapter extends TBaseAdapter {
         return convertView;
     }
 
-    class ViewHolde {
+    private class ViewHolde {
         TextView num, content, msgTime;
         CheckBox isCheck;
     }
 
-    public void refresh(List<CallLogMsg> callLogMsgs, List<ContactModel> isIn) {
+    public void refresh(List<CallLogMsg> callLogMsgs) {
         this.callLogMsgs = callLogMsgs;
-        this.isIn = isIn;
         notifyDataSetChanged();
     }
 }

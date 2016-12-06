@@ -15,9 +15,9 @@ import com.ca.tongxunlu.MyApplication;
 import com.ca.tongxunlu.R;
 import com.ca.tongxunlu.adapter.MsgAdapter;
 import com.ca.tongxunlu.contact.XYConstant;
+import com.ca.tongxunlu.i.Del;
 import com.ca.tongxunlu.model.CallLogMsg;
 import com.ca.tongxunlu.msgLog.ReadMsg;
-import com.ca.tongxunlu.i.Del;
 import com.ca.tongxunlu.utils.Utils;
 import com.ca.tongxunlu.utils.ViewUtils;
 
@@ -33,12 +33,10 @@ import java.util.List;
  * @更新时间: $Date$
  * @更新描述: TODO
  */
-public class MsgUI extends BaseActivity implements AdapterView.OnItemClickListener {
+public class MsgUI extends BaseActivity {
     private String type;
-    MsgAdapter adapter;
-    List<CallLogMsg> callLogMsgs = new ArrayList<>();
-    //    ReadMsg readMsg;
-    TextView delAllMsg;
+    private MsgAdapter adapter;
+    private List<CallLogMsg> callLogMsgs = new ArrayList<>();
     public static MsgUI instance;
     public Handler handler = new Handler() {
         @Override
@@ -47,7 +45,7 @@ public class MsgUI extends BaseActivity implements AdapterView.OnItemClickListen
                 case XYConstant.NEW_MSG:
                 case XYConstant.REFRESH_MSG:
                     Utils.systemMsg(instance);
-                    adapter.refresh(callLogMsgs = ReadMsg.getSmsInPhone(type), Utils.getPeopleInPhone(instance));
+                    adapter.refresh(callLogMsgs = ReadMsg.getSmsInPhone(type));
                     break;
             }
         }
@@ -65,15 +63,26 @@ public class MsgUI extends BaseActivity implements AdapterView.OnItemClickListen
         instance = this;
         type = getIntent().getStringExtra("msgtype");
         ListView autoListView = (ListView) findViewById(R.id.msgContent);
-        View headView = View.inflate(instance, R.layout.del_head_view, null);
-        delAllMsg = (TextView) headView.findViewById(R.id.delAllMsg);
+        TextView delAllMsg = (TextView) findViewById(R.id.delAllMsg);
         delAllMsg.setOnClickListener(this);
         callLogMsgs = ReadMsg.getSmsInPhone(type);
-        adapter = new MsgAdapter(MsgUI.this, callLogMsgs, Utils.getPeopleInPhone(instance));
+        adapter = new MsgAdapter(MsgUI.this, callLogMsgs);
         autoListView.setAdapter(adapter);
-        autoListView.addHeaderView(delAllMsg);
-        autoListView.setOnItemClickListener(this);
+        autoListView.setOnItemClickListener(clickListener);
     }
+
+    private AdapterView.OnItemClickListener clickListener = new AdapterView.OnItemClickListener() {
+        @Override
+        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            Intent intent = new Intent();
+            intent.putExtra("content", callLogMsgs.get(position - 1).msgcontent);
+            intent.putExtra("num", callLogMsgs.get(position - 1).name);
+            intent.putExtra("name", callLogMsgs.get(position - 1).num);
+            intent.putExtra("dateTime", callLogMsgs.get(position - 1).howTime);
+            intent.setClass(MsgUI.this, MeauUI.class);
+            startActivity(intent);
+        }
+    };
 
     @Override
     protected void onResume() {
@@ -105,16 +114,5 @@ public class MsgUI extends BaseActivity implements AdapterView.OnItemClickListen
                 });
                 break;
         }
-    }
-
-    @Override
-    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        Intent intent = new Intent();
-        intent.putExtra("content", callLogMsgs.get(position - 1).msgcontent);
-        intent.putExtra("num", callLogMsgs.get(position - 1).name);
-        intent.putExtra("name", callLogMsgs.get(position - 1).num);
-        intent.putExtra("dateTime", callLogMsgs.get(position - 1).howTime);
-        intent.setClass(MsgUI.this, MeauUI.class);
-        startActivity(intent);
     }
 }

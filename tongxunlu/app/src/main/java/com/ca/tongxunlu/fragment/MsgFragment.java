@@ -24,7 +24,6 @@ import com.ca.tongxunlu.utils.Utils;
  * @更新描述: TODO
  */
 public class MsgFragment extends Fragment implements View.OnClickListener {
-    TextView send, inbox, draft, sent;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -40,10 +39,10 @@ public class MsgFragment extends Fragment implements View.OnClickListener {
     }
 
     private void init(View view) {
-        send = (TextView) view.findViewById(R.id.sendMsg);
-        inbox = (TextView) view.findViewById(R.id.inboxmsg);
-        draft = (TextView) view.findViewById(R.id.draftmsg);
-        sent = (TextView) view.findViewById(R.id.sentmsg);
+        TextView send = (TextView) view.findViewById(R.id.sendMsg);
+        TextView inbox = (TextView) view.findViewById(R.id.inboxmsg);
+        TextView draft = (TextView) view.findViewById(R.id.draftmsg);
+        TextView sent = (TextView) view.findViewById(R.id.sentmsg);
         send.setOnClickListener(this);
         sent.setOnClickListener(this);
         draft.setOnClickListener(this);

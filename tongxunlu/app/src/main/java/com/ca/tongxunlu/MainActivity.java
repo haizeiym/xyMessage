@@ -25,11 +25,10 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class MainActivity extends BaseActivity implements View.OnClickListener {
-    TextView dial, record, msg, contact;
-    DialFragment dialFragment;
-    ContactFragment contactFragment;
-    MsgFragment msgFragment;
-    RecordFragment recordFragment;
+    private DialFragment dialFragment;
+    private ContactFragment contactFragment;
+    private MsgFragment msgFragment;
+    private RecordFragment recordFragment;
     public static MainActivity instance;
     public Handler handler = new Handler() {
         @Override
@@ -88,10 +87,10 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
     @Override
     public void initView() {
-        dial = (TextView) findViewById(R.id.dial);
-        record = (TextView) findViewById(R.id.record);
-        msg = (TextView) findViewById(R.id.msg);
-        contact = (TextView) findViewById(R.id.contact);
+        TextView dial = (TextView) findViewById(R.id.dial);
+        TextView record = (TextView) findViewById(R.id.record);
+        TextView msg = (TextView) findViewById(R.id.msg);
+        TextView contact = (TextView) findViewById(R.id.contact);
         dial.setOnClickListener(this);
         record.setOnClickListener(this);
         msg.setOnClickListener(this);
@@ -153,7 +152,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         Utils.systemMsg(instance);
         //初始化获取通话记录
         Utils.getCallHistoryList(instance);
-        //獲取版本號
+        //获取版本号
         getVersion();
     }
 

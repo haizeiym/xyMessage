@@ -374,9 +374,9 @@ public class Utils {
     //系统短信是否为自己的应用
     public static void isSystemAPK(Context context) {
         try {
-            //在4.4以上的版本需要应用程序设置为短信默认程序
-            String packName = context.getPackageName();
             if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+                //在4.4以上的版本需要应用程序设置为短信默认程序
+                String packName = context.getPackageName();
                 if (!Telephony.Sms.getDefaultSmsPackage(context).equals(packName)) {
                     Intent intent = new Intent(Telephony.Sms.Intents.ACTION_CHANGE_DEFAULT);
                     intent.putExtra(Telephony.Sms.Intents.EXTRA_PACKAGE_NAME, packName);
@@ -389,7 +389,7 @@ public class Utils {
     }
 
     //震动
-    public static void sharkCall(Context context) {
+    private static void sharkCall(Context context) {
         Vibrator vibrator = (Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE);
         long[] pattern = {0, 100, 0, 0};   // 停止 开启 停止 开启
         vibrator.vibrate(pattern, -1);
@@ -426,7 +426,7 @@ public class Utils {
         context.startActivity(intent);
     }
 
-    //去电弹窗（暂时不加，分机号未解决）
+   /* //去电弹窗（暂时不加，分机号未解决）
     public static void outingWindow(final Context context) {
         if (context == null) {
             return;
@@ -477,7 +477,7 @@ public class Utils {
                 }
             }
         });
-    }
+    }*/
 
     //去除去电弹窗
     public static void removeDia() {
@@ -502,8 +502,6 @@ public class Utils {
                 int index_Body = cur.getColumnIndex("body");
                 int index_Date = cur.getColumnIndex("date");
                 int type = cur.getColumnIndex("type");
-                /*Set<String> lastOneData = new HashSet<>();
-                String timeData = "";*/
                 do {
                     String strAddress = cur.getString(index_Address);
                     int intType = cur.getInt(type);
@@ -512,27 +510,13 @@ public class Utils {
                     SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
                     Date d = new Date(longDate);
                     String strDate = dateFormat.format(d);
-                    /*if (timeData.equals(strDate)) {
-                        lastOneData.add(strDate);
-                    } else {
-                    }*/
                     CallLogMsg callLogMsg = new CallLogMsg();
                     callLogMsg.name = strAddress;
                     callLogMsg.howTime = strDate;
                     callLogMsg.type = intType + "";
                     callLogMsg.msgcontent = strbody;
                     msgListAll.add(callLogMsg);
-                   /* timeData = strDate;*/
                 } while (cur.moveToNext());
-                /*if (lastOneData.size() > 0) {
-                    for (String hasTime : lastOneData) {
-                        for (CallLogMsg callLogMsg : msgListAll) {
-                            if (hasTime.equals(callLogMsg.howTime)) {
-                                msgListAll.remove(callLogMsg);
-                            }
-                        }
-                    }
-                }*/
             }
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -637,6 +621,7 @@ public class Utils {
             }
         }
     }
+
     /*//版本名
     public static String getVersionName(Context context) {
         return getPackageInfo(context).versionName;
